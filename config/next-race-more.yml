@@ -180,15 +180,6 @@
 
       </div>
     </div>
-
-        <div style="margin-block: 1rem;">
-          <img
-            src="http://localhost:4463/f1/next_map/"
-            onerror="this.style.display='none'"
-            style="max-width: 100%; height: auto; border-radius: 8px;"
-          />
-        </div>
-
         <p class="color-highlight" style="font-size: 14px; margin-top: 2em;">
           Circuit Details
         </p>
@@ -201,3 +192,10 @@
         <p class="size-h6" style="font-size: 13px;">
           Length: {{ $session.String "laps" }} laps @ {{ $session.String "circuit.circuitLengthKm" }} KMs
         </p>
+        <div style="margin-block: 1rem;">
+          <img
+            src="http://100.115.103.82:4463/f1/next_map/"
+            onerror="this.style.display='none'"
+            style="max-width: 100%; height: auto; border-radius: 8px;"
+          />
+        </div>

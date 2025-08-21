@@ -27,7 +27,7 @@
       {{ $awayTeamScore := $last.String "away.score" }}
       {{ $round := $last.String "round.name" }}
       {{ $date := .String "date" | parseLocalTime "RFC3339Nano" }}
-      {{ $date = $parsedTime.In now.Location | formatTime "Jan 02 2006 15:04" }}
+      {{ $date = $date.In now.Location | formatTime "Jan 02 2006 15:04" }}
 
 
       <div class="color-subdue" style="font-size: 0.8em; margin-bottom: 2px; text-transform: uppercase;">Last Match</div>
@@ -51,7 +51,7 @@
           <div class="color-primary" style="font-size: 1.1em;">{{ $homeTeam }} - {{ $awayTeam }}</div>
 
           {{ $date := .String "date" | parseLocalTime "RFC3339Nano" }}
-          {{ $date = $parsedTime.In now.Location | formatTime "Jan 02 2006 15:04" }}
+          {{ $date = $date.In now.Location | formatTime "Jan 02 2006 15:04" }}
           <div>{{ concat "(" (.String "round.name") ") " $date  }}</div>
         </li>
       {{ end }}
