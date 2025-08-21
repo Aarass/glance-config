@@ -1,0 +1,55 @@
+- type: custom-api
+  title: KK Partizan
+  cache: 6h
+  url: https://feeds.incrowdsports.com/provider/euroleague-feeds/v2/competitions/E/seasons/E2025/games?teamCode=PAR
+  template: |
+    {{ $items := .JSON.Array "data" }}
+
+    {{ $found := false }}
+    {{ $ind := -1 }}
+
+    {{ range (sortByTime "date" "RFC3339Nano" "desc" $items) }}
+      {{ if not $found }}
+        {{ $ind = add $ind 1}}
+
+        {{ if eq (.String "status") "result"}}
+          {{ $found = true }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+
+    {{ if $found }}
+      {{ $last := (index (sortByTime "date" "RFC3339Nano" "desc" $items) $ind) }}
+      {{ $homeTeam := $last.String "home.name" }}
+      {{ $awayTeam := $last.String "away.name" }}
+      {{ $homeTeamScore := $last.String "home.score" }}
+      {{ $awayTeamScore := $last.String "away.score" }}
+      {{ $round := $last.String "round.name" }}
+      {{ $date := $last.String "date" | parseTime "RFC3339Nano" | formatTime "Jan 02 2006 15:04" }}
+
+
+      <div class="color-subdue" style="font-size: 0.8em; margin-bottom: 2px; text-transform: uppercase;">Last Match</div>
+      <div style="opacity: 0.5;">
+        <div class="color-primary" style="font-size: 1.1em;">{{ $homeTeam }} {{ $homeTeamScore }} - {{ $awayTeamScore }} {{ $awayTeam }}</div>
+        <div>{{ concat "(" $round ")" " " $date }}</div>
+      </div>
+
+      <div style="margin: 2em 0;"></div>
+    {{ end }}
+
+    <div class="color-subdue" style="font-size: 0.8em; margin-bottom: 2px; text-transform: uppercase;">Upcoming Matches</div>
+    <ul class="list list-gap-10 collapsible-container" data-collapse-after="2">
+    {{ range (sortByTime "date" "RFC3339Nano" "asc" $items) }}
+      {{ $status :=  .String "status"  }}
+
+      {{ if eq $status "confirmed" }}
+        {{ $homeTeam :=  .String "home.name"  }}
+        {{ $awayTeam :=  .String "away.name"  }}
+        <li>
+          <div class="color-primary" style="font-size: 1.1em;">{{ $homeTeam }} - {{ $awayTeam }}</div>
+          <div>{{ concat "(" (.String "round.name") ") " (.String "date" | parseTime "RFC3339Nano" | formatTime "Jan 02 2006 15:04")  }}</div>
+        </li>
+      {{ end }}
+    {{ end }}
+    </ul>

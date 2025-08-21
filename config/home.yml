@@ -10,6 +10,7 @@
         #   feeds:
         #     - url: https://www.mozzartsport.com/rss/1.xml
         - $include: fk-partizan.yml
+        - $include: kk-partizan.yml
         - $include: trending-repos.yml
 
     - size: full
