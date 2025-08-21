@@ -1,0 +1,63 @@
+- name: Home
+  # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+  hide-desktop-navigation: true
+  columns:
+    - size: full
+      widgets:
+        # - type: rss
+        #   collapse-after: 5
+        #   cache: 12h
+        #   feeds:
+        #     - url: https://www.mozzartsport.com/rss/1.xml
+        - $include: fk-partizan.yml
+        - $include: trending-repos.yml
+
+    - size: full
+      widgets:
+        - $include: leet-code.yml
+        - type: iframe
+          source: https://www.youtube.com/embed/jfKfPfyJRdk
+          height: 300
+        - type: videos
+          style: grid-cards
+          channels:
+            - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
+            - UCBJycsmduvYEL83R_U4JriQ # Marques Brownlee
+            - UCQG40havu4kNpB4pxUDQhYQ
+            - UCXzw-OdotBUcNA9yhuYQBwA
+            - UC2Xd-TjJByJyK2w1zNwY0zQ
+            - UC9HOZ53gnHP3f_b-wixS74g
+            - UCYbK_tjZ2OrIZFBvU6CCMiA
+            - UCdp4_l1vPmpN-gDbUwhaRUQ
+            - UC0e3QhIYukixgh5VVpKHH9Q
+            - UCaSCt8s_4nfkRglWCvNSDrg
+            - UCGKEMK3s-ZPbjVOIuAV8clQ
+            - UCWQaM7SpSECp9FELz-cHzuQ
+            - UCN2LCOayGpSxdgBk_MB3iIw
+            - UCdmAhiG8HQDlz8uyekw4ENw
+            - UCnNEI3UdreSoQ6XUNcKoUeg
+            - UC0SNGrU20N1Q0SPWimGu7gQ
+            - UC8bYucAICXmYet8pZ5Ja9Dw
+            - UCLyVUwlB_Hahir_VsKkGPIA
+            - UCUMwY9iS8oMyWDYIe6_RmoA
+            - UCmtyQOKKmrMVaKuRXz02jbQ
+            - UCEwhtpXrg5MmwlH04ANpL8A
+            - UCDzVUXiTr3hClI-zzCWbYzg
+            - UCeeFfhMcJa1kjtfZAGskOCA
+            - UCQ-W1KE9EYfdxhL6S4twUNw
+            - UC8ENHE5xdFSwx71u3fDH5Xw
+            - UCUyeluBRhGPCW4rPe_UvBZQ
+            - UCVk4b-svNJoeytrrlOixebQ
+            - UCUkRj4qoT1bsWpE_C8lZYoQ
+            - UCd3dNckv1Za2coSaHGHl5aA
+
+    - size: small
+      widgets:
+        - type: twitch-channels
+          channels:
+            - theprimeagen
+            - gothamchess
+            - thecherno
+        - $include: next-race-more.yml
+        - $include: drivers.yml
+        - $include: constructors.yml

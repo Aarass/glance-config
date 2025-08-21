@@ -1,0 +1,3 @@
+.widget-type-iframe > .widget-header {
+  display: none !important;
+}

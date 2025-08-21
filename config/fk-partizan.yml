@@ -1,0 +1,35 @@
+- type: custom-api
+  title: FK Partizan
+  cache: 6h
+  url: https://fkpartizan.mpanel.app/api/webV1/getMatches
+  method: POST
+  template: |
+    <div class="color-subdue" style="font-size: 0.8em; margin-bottom: 2px; text-transform: uppercase;">Scheduled Matches</div>
+
+    {{ range .JSON.Array "result.matchesScheduled" }}
+      {{ $homeTeam :=  .String "home_team.teamName"  }}
+      {{ $awayTeam :=  .String "away_team.teamName"  }}
+
+      <div class="color-primary" style="font-size: 1.1em;">
+        {{ $homeTeam }} - {{ $awayTeam }}
+      </div>
+
+      <div>{{ .String "matchTime" | parseTime "DateTime" | formatTime "Jan 02 2006 15:04" }}</div>
+    {{ end }}
+
+    <div style="margin: 2em 0;"></div>
+
+    <div class="color-subdue" style="font-size: 0.8em; margin-bottom: 2px; text-transform: uppercase;">Completed Matches</div>
+    <ul class="list list-gap-10 collapsible-container" style="opacity: 0.5;" data-collapse-after="2">
+    {{ range .JSON.Array "result.matchesCompleted" }}
+      {{ $homeTeam :=  .String "home_team.teamName"  }}
+      {{ $homeTeamScore :=  .String "homeScoreString"  }}
+      {{ $awayTeam :=  .String "away_team.teamName"  }}
+      {{ $awayTeamScore :=  .String "awayScoreString"  }}
+
+      <li>
+        <div class="color-primary" style="font-size: 1.1em;">{{ $homeTeam }} {{ $homeTeamScore }} - {{ $awayTeamScore }} {{ $awayTeam }}</div>
+        <div>{{ .String "matchTime" | parseTime "DateTime" | formatTime "Jan 02 2006" }}</div>
+      </li>
+    {{ end }}
+    </ul>
