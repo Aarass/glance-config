@@ -3,7 +3,7 @@
   cache: 5m
   url: http://${F1_API_URL}:4463/f1/constructors_standings/
   template: |
-    <ul class="list collapsible-container" data-collapse-after="5">
+    <ul>
       {{ range $i, $v := .JSON.Array "constructors" }}
       <li class="flex items-center {{ if eq $i 0 }}color-primary{{ else if eq $i 1 }}color-highlight{{ end }}">
         <span class="grow min-width-0">

@@ -5,12 +5,10 @@
   template: |
     <div class="flex flex-column gap-10">
       {{ $session := index (.JSON.Array "race") 0 }}
-      <p class="size-h5" style="font-size: 15px;">
-        {{ .JSON.String "season" }}, Round {{ .JSON.String "round" }}
-      </p>
 
-      <div class="margin-block-4">
-        <p class="color-highlight" style="font-size: 15px;">{{ $session.String "raceName" }}</p>
+      <div>
+        <p class="color-highlight" style="font-size: 1.2em;">{{ $session.String "raceName" }}</p>
+        <p>{{ concat "(Round " (.JSON.String "round") ")" }}</p>
 
         <div class="margin-block-10"></div> 
         
@@ -191,7 +189,7 @@
           />
         </div>
 
-        <p class="color-highlight" style="font-size: 14px;">
+        <p class="color-highlight" style="font-size: 14px; margin-top: 2em;">
           Circuit Details
         </p>
         <p class="size-h6" style="font-size: 13px;">

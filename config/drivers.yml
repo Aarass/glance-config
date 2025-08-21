@@ -3,7 +3,7 @@
   cache: 5m
   url: http://${F1_API_URL}:4463/f1/drivers_standings/
   template: |
-    <ul class="list collapsible-container" data-collapse-after="3">
+    <ul class="list collapsible-container" data-collapse-after="10">
       {{ range $i, $v := .JSON.Array "drivers" }}
       <li class="flex items-center {{ if eq $i 0 }}color-primary{{ else if eq $i 1 }}color-highlight{{ end }}">
         <div class="grow min-width-0">
